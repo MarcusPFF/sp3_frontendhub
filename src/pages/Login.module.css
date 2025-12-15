@@ -1,0 +1,123 @@
+.page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.shell {
+  width: min(980px, 100%);
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.card {
+  background: radial-gradient(circle at top left, #f8f4ec, #efe7da);
+  border-radius: 26px;
+  padding: 2.2rem 2.4rem;
+  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.22);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 2.2rem;
+}
+
+.brandPanel {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+  align-content: center;
+}
+
+.logo {
+  width: 82px;
+  height: 82px;
+  border-radius: 999px;
+  background-color: #fdfaf5;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  object-fit: contain;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.9rem;
+  color: var(--color-primary);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.formPanel {
+  background-color: var(--color-surface);
+  padding: 1.9rem 1.8rem;
+  border-radius: 20px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.16);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.input {
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background-color: #f9fafb;
+  color: var(--color-text-main);
+  font-size: 0.98rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(47, 111, 78, 0.2);
+  background-color: #ffffff;
+}
+
+.button {
+  margin-top: 0.4rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--color-primary), #347f59);
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  justify-self: flex-start;
+  min-width: 210px;
+  box-shadow: 0 14px 32px rgba(52, 127, 89, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(52, 127, 89, 0.6);
+  filter: brightness(1.03);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 22px rgba(52, 127, 89, 0.45);
+}
+
+

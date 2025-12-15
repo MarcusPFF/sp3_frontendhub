@@ -1,0 +1,73 @@
+.appWrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: var(--color-bg);
+}
+
+.header {
+  background: linear-gradient(135deg, #2f6f4e, #244c39);
+  display: grid;
+  grid-template-rows: auto auto;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.25);
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 0.9rem 0.4rem;
+}
+
+.logo {
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 999px;
+  background-color: #fdfaf5;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.28);
+}
+
+.nav {
+  background-color: rgba(15, 23, 42, 0.98);
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.navItem {
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  padding: 0.8rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.navItem:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.navItemActive {
+  color: #ffffff;
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1.25rem 3rem;
+}
+
+

@@ -1,17 +1,46 @@
-# React + Vite
+## Cook & Recipe – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En lille, simpel React‑app til at vise et “Cook & Recipe” univers med sider for opskrifter, ingredienser, about og login.  
+Bygget med Vite, React, React Router og CSS Modules (flexbox + grid).
 
-Currently, two official plugins are available:
+### Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Build tooling**: Vite + npm
+- **UI**: React (JSX), CSS Modules
+- **Routing**: `react-router`
+- **Styling**: Flexbox, CSS Grid, simpel design‑system via CSS‑variabler
 
-## React Compiler
+### Struktur
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **`src/main.jsx`**: Bootstrapper React‑appen
+- **`src/App.jsx`**: Router-opsætning (`RouterProvider`, routes)
+- **`src/components/Layout.jsx` + `Layout.module.css`**:
+  - Globalt layout: header med logo og navigation, main‑område
+- **`src/pages`**:
+  - `Home.jsx` – intro + logo
+  - `Recipes.jsx` – placeholder for opskrifter
+  - `Ingredients.jsx` – placeholder for ingredienser
+  - `About.jsx` – kort tekst om siden
+  - `Login.jsx` – moderne login‑layout med logo og formular
+- **`src/index.css`**: Globale resets + farvepalette via CSS‑variabler
 
-## Expanding the ESLint configuration
+### Kør projektet
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# sp3_frontendhub
+```bash
+npm install
+npm run dev
+```
+
+Åbn derefter URL’en som Vite skriver i terminalen (typisk `http://localhost:5173`).
+
+### Designprincipper
+
+- **Simpelt layout**: klar header, rolig baggrund, fokus på kort/indhold
+- **Genbrug**: hver side har sin egen JSX‑komponent + CSS Module
+- **Læsbarhed**: ingen unødvendige kommentarer, korte filer, tydelige classnavne
+
+### Mulige forbedringer
+
+- Tilføje rigtige data til Recipes/Ingredients (fx via JSON eller API)
+- Validere loginformular og vise feedback
+- Gøre layoutet 100 % responsivt på helt små mobilskærme
