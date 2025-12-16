@@ -17,9 +17,7 @@ export default function Login() {
     try {
       await login(loginCredentials.username, loginCredentials.password);
 
-      const [username, roles] = facade.getUserNameAndRoles();
-
-      if (roles.includes("admin")) {
+      if (facade.hasUserAccess("admin", true)) {
         navigate("/admin");
       } else {
         navigate("/");

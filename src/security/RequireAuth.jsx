@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router";
-import { useAuth } from "../security/Auth";
+import { useAuth } from "./Auth";
 
-export default function RequireAuth({ children }) {
+export default function RequireAuth({ element }) {
   const { isLoggedIn } = useAuth();
   const location = useLocation();
 
@@ -9,5 +9,5 @@ export default function RequireAuth({ children }) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  return children;
+  return element;
 }

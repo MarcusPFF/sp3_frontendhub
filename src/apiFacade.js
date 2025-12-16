@@ -61,20 +61,25 @@ const logout = () => {
 
 
 const getUserNameAndRoles = () => {
-        const token = getToken()
-        if (token != null) {
-            const payloadBase64 = getToken().split('.')[1];
+    const token = getToken();
+    if (token != null) {
+        try {
+            const payloadBase64 = token.split('.')[1];
             const decodedClaims = JSON.parse(window.atob(payloadBase64));
             const roles = decodedClaims.roles;
             const username = decodedClaims.username;
-            return [username, roles]
-        } else return [];
-    }
+            const rolesArray = Array.isArray(roles) ? roles : roles.split(',');
+            return [username, rolesArray];
+        } catch {
+            return ["", []];
+        }
+    } else return ["", []];
+};
 
-    const hasUserAccess = (neededRole, loggedIn) => {
-        const roles = getUserNameAndRoles().split(',')
-        return loggedIn && roles.includes(neededRole)
-    }
+const hasUserAccess = (neededRole, loggedIn) => {
+    const [, roles] = getUserNameAndRoles(); 
+    return loggedIn && roles.includes(neededRole);
+};
 
 const facade = {
   makeOptions,
@@ -84,8 +89,8 @@ const facade = {
   login,
   logout,
   fetchData,
-  getUserNameAndRoles
+  getUserNameAndRoles,
+  hasUserAccess 
 };
-
 
 export default facade;

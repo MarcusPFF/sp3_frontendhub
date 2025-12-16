@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router";
 import { useAuth } from "../security/Auth";
+import facade from "../apiFacade";
 import logo from "../assets/logo.png";
 import styles from "./Layout.module.css";
 
@@ -57,20 +58,15 @@ export default function Layout() {
                     Logout
                   </button>
                 </li>
-
                 <li>
-                  {user.roles.includes("admin") ? (
+                  {facade.hasUserAccess("admin", isLoggedIn) ? (
                     <NavLink to="/admin" className={getNavClass}>
                       Admin
                     </NavLink>
                   ) : (
                     <span
                       className={styles.navItem}
-                      style={{
-                        cursor: "default",
-                        color: "#8e8787ff",
-                        fontStyle: "italic",
-                      }}
+                      style={{ cursor: "default", color: "#94a3b8" }}
                     >
                       Hello, {user.username}
                     </span>

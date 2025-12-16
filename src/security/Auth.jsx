@@ -1,25 +1,25 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 import facade from "../apiFacade";
 
 const AuthContext = createContext(null);
 
 export const Auth = ({ children }) => {
-  const [user, setUser] = useState({ username: "", roles: [] });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => facade.loggedIn());
 
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     if (facade.loggedIn()) {
       const [username, roles] = facade.getUserNameAndRoles();
-      setUser({ username, roles });
-      setIsLoggedIn(true);
+      return { username, roles };
     }
-  }, []);
+    return { username: "", roles: [] };
+  });
 
   const login = async (username, password) => {
     await facade.login(username, password);
 
-    const [user, roles] = facade.getUserNameAndRoles();
-    setUser({ username: user, roles: roles });
+    const [tokenUsername, roles] = facade.getUserNameAndRoles();
+
+    setUser({ username: tokenUsername, roles: roles });
     setIsLoggedIn(true);
   };
 
@@ -33,5 +33,6 @@ export const Auth = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-
+//kommentar der fjerner react refresh warning
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
