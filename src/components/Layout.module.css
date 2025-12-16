@@ -38,6 +38,7 @@
   display: flex;
   justify-content: center;
   gap: 1.5rem;
+  align-items: center; 
 }
 
 .navItem {
@@ -46,6 +47,7 @@
   color: #e5e7eb;
   padding: 0.8rem 0.5rem;
   font-size: 1rem;
+  font-family: inherit; 
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
@@ -71,3 +73,15 @@
 }
 
 
+.loginStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.username {
+  color: #94a3b8; 
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+  pointer-events: none; 
+}
