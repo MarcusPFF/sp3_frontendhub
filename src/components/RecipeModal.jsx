@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import recipeFacade from "../../apiFacade.js";
 import IngredientsList from "./IngredientsList";
 import styles from "./RecipeModal.module.css";
@@ -8,13 +8,7 @@ export default function RecipeModal({ recipeId, onClose }) {
   const [loading, setLoading] = useState(false);
   const [expandedIngredients, setExpandedIngredients] = useState(new Set());
 
-  useEffect(() => {
-    if (recipeId) {
-      loadRecipeDetails();
-    }
-  }, [recipeId]);
-
-  const loadRecipeDetails = async () => {
+  const loadRecipeDetails = useCallback(async () => {
     setLoading(true);
     setRecipeDetails(null);
     setExpandedIngredients(new Set());
@@ -31,7 +25,13 @@ export default function RecipeModal({ recipeId, onClose }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [recipeId]);
+
+  useEffect(() => {
+    if (recipeId) {
+      loadRecipeDetails();
+    }
+  }, [recipeId, loadRecipeDetails]);
 
   const toggleIngredient = (ingredientId) => {
     setExpandedIngredients((prev) => {

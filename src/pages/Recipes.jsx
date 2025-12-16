@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import recipeFacade from "../../apiFacade.js";
 import RecipeModal from "../components/RecipeModal";
 import styles from "./Recipes.module.css";
@@ -12,11 +12,7 @@ export default function Recipes() {
   const [error, setError] = useState(null);
   const [selectedRecipeId, setSelectedRecipeId] = useState(null);
 
-  useEffect(() => {
-    loadRecipes();
-  }, [selectedCategory]);
-
-  const loadRecipes = async () => {
+  const loadRecipes = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -37,7 +33,11 @@ export default function Recipes() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    loadRecipes();
+  }, [loadRecipes]);
 
   const handleRecipeClick = (recipeId) => {
     setSelectedRecipeId(recipeId);
