@@ -7,34 +7,302 @@
 
 .card {
   background-color: var(--color-surface);
-  padding: 2.5rem 2.25rem;
-  border-radius: 18px;
+  padding: 2.25rem 2rem;
+  border-radius: 16px;
   display: grid;
-  grid-template-rows: auto auto auto;
-  justify-items: center;
-  gap: 0.9rem;
+  grid-template-rows: auto auto 1fr;
+  gap: 1.5rem;
   width: 100%;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
-  border: 1px solid rgba(148, 163, 184, 0.35);
-}
-
-.logo {
-  width: 88px;
-  height: auto;
-  object-fit: contain;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.13);
+  border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
 .title {
   margin: 0;
-  font-size: 1.8rem;
-  letter-spacing: 0.03em;
+  font-size: 1.6rem;
   color: var(--color-primary);
 }
 
-.text {
-  margin: 0;
+.message {
   text-align: center;
   color: var(--color-text-muted);
+  font-size: 1.1rem;
+  padding: 2rem 0;
 }
 
+.error {
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
 
+.success {
+  background-color: #d1fae5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dismissButton {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dismissButton:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.scrollContainer {
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.5rem;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: var(--color-surface-soft);
+  border-radius: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+  opacity: 0.8;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.userRow {
+  background-color: var(--color-surface-soft);
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.userRow:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.userRowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  gap: 1rem;
+}
+
+.userRowHeader:hover {
+  background-color: rgba(148, 163, 184, 0.05);
+}
+
+.userRowInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.userRowName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.userRowRoles {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.expandIcon {
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.userRowContent {
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  background-color: var(--color-surface);
+}
+
+.expandedSection {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.rolesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rolesTitle {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rolesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.roleBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.removeRoleButton {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.removeRoleButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.noRoles {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.addRoleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.addRoleForm {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.roleSelect {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.roleSelect:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.addButton {
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.addButton:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.addButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.deleteSection {
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.deleteUserButton {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid #dc2626;
+  border-radius: 8px;
+  background-color: var(--color-surface);
+  color: #dc2626;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteUserButton:hover {
+  background-color: #fee2e2;
+  color: #991b1b;
+  transform: translateY(-1px);
+}
