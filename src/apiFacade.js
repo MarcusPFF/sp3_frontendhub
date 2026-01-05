@@ -163,6 +163,24 @@ const recipeFacade = {
   },
 };
 
+const userFacade = {
+  getAll: () => {
+    return apiCall("GET", "auth/users");
+  },
+
+  addRole: (userDTO, role) => {
+    return apiCall("POST", "auth/user/role", {}, {}, { username: userDTO.username, role });
+  },
+
+  removeRole: (userDTO, role) => {
+    return apiCall("DELETE", "auth/user/role", {}, {}, { username: userDTO.username, role });
+  },
+
+  delete: (userDTO) => {
+    return apiCall("DELETE", "auth/user", {}, {}, { username: userDTO.username });
+  },
+};
+
 const facade = {
   makeOptions,
   setToken,
@@ -174,6 +192,7 @@ const facade = {
   getUserNameAndRoles,
   hasUserAccess,
   recipeFacade,
+  userFacade,
 };
 
 export default facade;
