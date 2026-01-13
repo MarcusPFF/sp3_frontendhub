@@ -1,4 +1,4 @@
-.modalOverlay {
+.recipeModalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   padding: 2rem;
 }
 
-.modal {
+.recipeModalContainer {
   background-color: var(--color-surface);
   border-radius: 16px;
   max-width: 600px;
@@ -24,7 +24,7 @@
   border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
-.closeButton {
+.recipeModalCloseButton {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -43,16 +43,16 @@
   z-index: 10;
 }
 
-.closeButton:hover {
+.recipeModalCloseButton:hover {
   background-color: var(--color-surface-soft);
   color: var(--color-text-main);
 }
 
-.modalContent {
+.recipeModalContent {
   padding: 2.5rem 2rem 2rem;
 }
 
-.modalHeader {
+.recipeModalHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -60,7 +60,7 @@
   margin-bottom: 1.5rem;
 }
 
-.modalTitle {
+.recipeModalTitle {
   margin: 0;
   font-size: 1.8rem;
   font-weight: 600;
@@ -68,7 +68,7 @@
   flex: 1;
 }
 
-.modalCategoryBadge {
+.recipeModalCategoryBadge {
   padding: 0.4rem 0.9rem;
   border-radius: 8px;
   background-color: var(--color-primary-soft);
@@ -79,14 +79,14 @@
   white-space: nowrap;
 }
 
-.modalDescription {
+.recipeModalDescription {
   margin: 0 0 2rem 0;
   color: var(--color-text-muted);
   font-size: 1rem;
   line-height: 1.6;
 }
 
-.modalMessage {
+.recipeModalStatusMessage {
   padding: 2rem;
   text-align: center;
   color: var(--color-text-muted);
@@ -96,27 +96,27 @@
   margin-top: 2rem;
 }
 
-.sectionTitle {
+.ingredientsSectionTitle {
   margin: 0 0 1.5rem 0;
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--color-primary);
 }
 
-.ingredientsList {
+.ingredientsListContainer {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.ingredientItem {
+.ingredientListItem {
   padding: 0.75rem;
   background-color: var(--color-surface-soft);
   border-radius: 8px;
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-.ingredientInfo {
+.ingredientListItemInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -124,7 +124,7 @@
   gap: 0.5rem;
 }
 
-.ingredientNameSection {
+.ingredientListItemNameWrapper {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -132,58 +132,58 @@
   flex-wrap: wrap;
 }
 
-.ingredientInfoRight {
+.ingredientListItemRight {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   flex-shrink: 0;
 }
 
-.ingredientName {
+.ingredientListItemName {
   font-weight: 600;
   color: var(--color-text-main);
   font-size: 1rem;
 }
 
-.ingredientAmount {
+.ingredientListItemAmount {
   color: var(--color-primary);
   font-weight: 500;
   font-size: 0.9rem;
 }
 
-.ingredientPreparation {
+.ingredientListItemPreparation {
   margin: 0.25rem 0 0 0;
   color: var(--color-text-muted);
   font-size: 0.85rem;
   font-style: italic;
 }
 
-.ingredientDescription {
+.ingredientListItemDescription {
   color: var(--color-text-muted);
   font-size: 0.85rem;
   font-style: italic;
 }
 
-.macros {
+.ingredientNutritionContainer {
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-.macrosTitle {
+.ingredientNutritionTitle {
   margin: 0 0 0.5rem 0;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-primary);
 }
 
-.macrosGrid {
+.ingredientNutritionGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
 }
 
-.macroItem {
+.ingredientNutritionItem {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
@@ -192,20 +192,20 @@
   border-radius: 4px;
 }
 
-.macroLabel {
+.ingredientNutritionLabel {
   font-size: 0.7rem;
   color: var(--color-text-muted);
   text-transform: uppercase;
   font-weight: 500;
 }
 
-.macroValue {
+.ingredientNutritionValue {
   font-size: 0.85rem;
   color: var(--color-text-main);
   font-weight: 600;
 }
 
-.nutritionPill {
+.ingredientNutritionToggle {
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
@@ -222,12 +222,12 @@
   flex-shrink: 0;
 }
 
-.nutritionPill:hover {
+.ingredientNutritionToggle:hover {
   background-color: var(--color-primary-soft);
   transform: scale(1.1);
 }
 
-.nutritionPillActive {
+.ingredientNutritionToggleActive {
   background-color: var(--color-primary);
   color: white;
 }

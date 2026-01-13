@@ -301,8 +301,26 @@
   transition: all 0.2s ease;
 }
 
-.deleteUserButton:hover {
+.deleteUserButton:hover:not(:disabled) {
   background-color: #fee2e2;
   color: #991b1b;
   transform: translateY(-1px);
+}
+
+.deleteUserButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.roleSelect:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--color-surface-soft);
+}
+
+.disabledHint {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-style: italic;
 }

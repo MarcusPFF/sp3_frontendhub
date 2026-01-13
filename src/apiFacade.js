@@ -1,5 +1,6 @@
-const BASE_URL = "http://localhost:7070/api/";
+export const BASE_URL = "https://recipeapi.kudskprogramming.dk/api/";
 const LOGIN_ENDPOINT = "auth/login";
+const REGISTER_ENDPOINT = "auth/register";
 
 async function handleHttpErrors(res) {
   if (!res.ok) {
@@ -9,12 +10,12 @@ async function handleHttpErrors(res) {
     } catch {
       errorData = { msg: `HTTP ${res.status} Error` };
     }
-    return Promise.reject({ status: res.status, message: errorData.msg || errorData.message || `HTTP ${res.status} Error`, fullError: errorData });
+    throw { status: res.status, message: errorData.msg || errorData.message || `HTTP ${res.status} Error`, fullError: errorData };
   }
   if (res.status === 204) {
-    return Promise.resolve();
+    return;
   }
-  return res.json();
+  return await res.json();
 }
 
 function makeOptions(method, addToken, body) {
@@ -52,37 +53,56 @@ function buildUrl(endpoint, pathParams = {}, queryParams = {}) {
   return url;
 }
 
-function apiCall(method, endpoint, pathParams = {}, queryParams = {}, body = null, addToken = true) {
+async function apiCall(method, endpoint, pathParams = {}, queryParams = {}, body = null, addToken = true) {
   const url = buildUrl(endpoint, pathParams, queryParams);
   const options = makeOptions(method, addToken, body);
   
-  console.log(`API Call: ${method} ${url}`, options);
-  
-  return fetch(url, options)
-    .catch((error) => {
-      console.error("Fetch error:", error);
-      if (error.name === "TypeError" && error.message === "Failed to fetch") {
-        const errorMsg = `Unable to connect to server at ${url}. This is usually caused by:
+  try {
+    const response = await fetch(url, options);
+    return await handleHttpErrors(response);
+  } catch (error) {
+    if (error.name === "TypeError" && error.message === "Failed to fetch") {
+      const errorMsg = `Unable to connect to server at ${url}. This is usually caused by:
 1. CORS issues - make sure your API server allows requests from http://localhost:5173
 2. Server not running - verify the API server is running on http://localhost:7070
 3. Network/firewall blocking the connection`;
-        return Promise.reject({
-          status: 0,
-          message: errorMsg,
-          url: url,
-          error: error,
-        });
-      }
-      return Promise.reject(error);
-    })
-    .then(handleHttpErrors);
+      throw {
+        status: 0,
+        message: errorMsg,
+        url: url,
+        error: error,
+      };
+    }
+    throw error;
+  }
 }
 
+const isAdmin = (token) => {
+  if (!token) return false;
+  try {
+    const payloadBase64 = token.split(".")[1];
+    const decodedClaims = JSON.parse(window.atob(payloadBase64));
+    const roles = decodedClaims.roles;
+    const rolesArray = Array.isArray(roles) ? roles : roles.split(",");
+    return rolesArray.includes("admin");
+  } catch {
+    return false;
+  }
+};
+
 const setToken = (token) => {
-  localStorage.setItem("jwtToken", token);
+  if (isAdmin(token)) {
+    sessionStorage.setItem("jwtToken", token);
+    localStorage.removeItem("jwtToken");
+  } else {
+    localStorage.setItem("jwtToken", token);
+    sessionStorage.removeItem("jwtToken");
+  }
 };
 
 const getToken = () => {
+  const sessionToken = sessionStorage.getItem("jwtToken");
+  if (sessionToken) return sessionToken;
   return localStorage.getItem("jwtToken");
 };
 
@@ -92,24 +112,34 @@ const loggedIn = () => {
 
 const logout = () => {
   localStorage.removeItem("jwtToken");
+  sessionStorage.removeItem("jwtToken");
 };
 
-const login = (user, password) => {
+async function login(user, password) {
   const options = makeOptions("POST", false, {
     username: user,
     password: password,
   });
-  return fetch(BASE_URL + LOGIN_ENDPOINT, options)
-    .then(handleHttpErrors)
-    .then((data) => {
-      setToken(data.token);
-    });
-};
+  const response = await fetch(BASE_URL + LOGIN_ENDPOINT, options);
+  const data = await handleHttpErrors(response);
+  setToken(data.token);
+}
 
-const fetchData = (endpoint) => {
+async function register(user, password) {
+  const options = makeOptions("POST", false, {
+    username: user,
+    password: password,
+  });
+  const response = await fetch(BASE_URL + REGISTER_ENDPOINT, options);
+  const data = await handleHttpErrors(response);
+  setToken(data.token);
+}
+
+async function fetchData(endpoint) {
   const options = makeOptions("GET", true);
-  return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
-};
+  const response = await fetch(BASE_URL + endpoint, options);
+  return await handleHttpErrors(response);
+}
 
 const getUserNameAndRoles = () => {
   const token = getToken();
@@ -187,6 +217,7 @@ const facade = {
   getToken,
   loggedIn,
   login,
+  register,
   logout,
   fetchData,
   getUserNameAndRoles,

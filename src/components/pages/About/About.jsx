@@ -1,4 +1,4 @@
-import styles from "./SimplePage.module.css";
+import styles from "../../css-modules/SimplePage.module.css";
 
 export default function About() {
   return (
@@ -12,5 +12,4 @@ export default function About() {
     </section>
   );
 }
-
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import facade from "../apiFacade.js";
-import IngredientsList from "./IngredientsList";
-import styles from "./RecipeModal.module.css";
+import facade from "../../../../apiFacade.js";
+import IngredientsList from "./containers/IngredientsList";
+import styles from "./css-modules/RecipeModal.module.css";
 
 export default function RecipeModal({ recipeId, onClose }) {
   const [recipeDetails, setRecipeDetails] = useState(null);
@@ -14,10 +14,6 @@ export default function RecipeModal({ recipeId, onClose }) {
     setExpandedIngredients(new Set());
     try {
       const data = await facade.recipeFacade.getById(recipeId);
-      console.log("Recipe details:", data);
-      if (data.ingredients) {
-        console.log("First ingredient:", data.ingredients[0]);
-      }
       setRecipeDetails(data);
     } catch (err) {
       console.error("Error loading recipe details:", err);
@@ -48,19 +44,19 @@ export default function RecipeModal({ recipeId, onClose }) {
   if (!recipeId) return null;
 
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
+    <div className={styles.recipeModalOverlay} onClick={onClose}>
+      <div className={styles.recipeModalContainer} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.recipeModalCloseButton} onClick={onClose}>
           ×
         </button>
-        {loading && <p className={styles.modalMessage}>Loading recipe details...</p>}
+        {loading && <p className={styles.recipeModalStatusMessage}>Loading recipe details...</p>}
         {!loading && recipeDetails && (
-          <div className={styles.modalContent}>
-            <div className={styles.modalHeader}>
-              <h2 className={styles.modalTitle}>{recipeDetails.name}</h2>
-              <span className={styles.modalCategoryBadge}>{recipeDetails.category}</span>
+          <div className={styles.recipeModalContent}>
+            <div className={styles.recipeModalHeader}>
+              <h2 className={styles.recipeModalTitle}>{recipeDetails.name}</h2>
+              <span className={styles.recipeModalCategoryBadge}>{recipeDetails.category}</span>
             </div>
-            <p className={styles.modalDescription}>{recipeDetails.description}</p>
+            <p className={styles.recipeModalDescription}>{recipeDetails.description}</p>
             
             <IngredientsList
               ingredients={recipeDetails.ingredients}
@@ -70,7 +66,7 @@ export default function RecipeModal({ recipeId, onClose }) {
           </div>
         )}
         {!loading && !recipeDetails && (
-          <p className={styles.modalMessage}>Failed to load recipe details.</p>
+          <p className={styles.recipeModalStatusMessage}>Failed to load recipe details.</p>
         )}
       </div>
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import { createContext, useState, useContext } from "react";
 import facade from "../apiFacade";
 
@@ -15,12 +16,25 @@ export const Auth = ({ children }) => {
   });
 
   const login = async (username, password) => {
-    await facade.login(username, password);
+    try {
+      await facade.login(username, password);
+      const [tokenUsername, roles] = facade.getUserNameAndRoles();
+      setUser({ username: tokenUsername, roles: roles });
+      setIsLoggedIn(true);
+    } catch (error) {
+      throw error;
+    }
+  };
 
-    const [tokenUsername, roles] = facade.getUserNameAndRoles();
-
-    setUser({ username: tokenUsername, roles: roles });
-    setIsLoggedIn(true);
+  const register = async (username, password) => {
+    try {
+      await facade.register(username, password);
+      const [tokenUsername, roles] = facade.getUserNameAndRoles();
+      setUser({ username: tokenUsername, roles: roles });
+      setIsLoggedIn(true);
+    } catch (error) {
+      throw error;
+    }
   };
 
   const logout = () => {
@@ -29,10 +43,10 @@ export const Auth = ({ children }) => {
     setIsLoggedIn(false);
   };
 
-  const value = { user, isLoggedIn, login, logout };
+  const value = { user, isLoggedIn, login, register, logout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-//kommentar der fjerner react refresh warning
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);

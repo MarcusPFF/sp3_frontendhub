@@ -1,5 +1,5 @@
-import styles from "./Home.module.css";
-import logo from "../assets/logo.png";
+import styles from "../../css-modules/SimplePage.module.css";
+import logo from "../../../assets/logo.png";
 
 export default function Home() {
   return (
@@ -14,5 +14,4 @@ export default function Home() {
     </section>
   );
 }
-
 

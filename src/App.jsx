@@ -2,14 +2,14 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { Auth } from "./security/Auth";
 import RequireAuth from "./security/RequireAuth";
 import RequireAdmin from "./security/RequireAdmin";
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import Recipes from "./pages/Recipes";
-import Ingredients from "./pages/Ingredients";
-import Admin from "./pages/Admin";
-import About from "./pages/About";
-import Login from "./pages/Login";
-import Error404 from "./pages/Error404";
+import Layout from "./components/header/Layout";
+import Home from "./components/pages/Home/Home";
+import Recipes from "./components/pages/Recipes/Recipes";
+import Ingredients from "./components/pages/Ingredients/Ingredients";
+import Admin from "./components/pages/Admin/Admin";
+import About from "./components/pages/About/About";
+import Login from "./components/pages/Login/Login";
+import Error404 from "./components/pages/Error404/Error404";
 
 import "./App.css";
 

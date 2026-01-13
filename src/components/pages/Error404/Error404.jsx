@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import styles from "./Home.module.css"; 
+import styles from "../../css-modules/SimplePage.module.css"; 
 
 export default function Error404() {
   const navigate = useNavigate();
@@ -23,3 +23,4 @@ export default function Error404() {
     </section>
   );
 }
+

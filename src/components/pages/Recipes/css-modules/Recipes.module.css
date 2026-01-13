@@ -1,11 +1,11 @@
-.page {
+.recipesPage {
   width: 100%;
   max-width: 720px;
-  display: flex;
+  display: grid;
   justify-content: center;
 }
 
-.card {
+.recipesCard {
   background-color: var(--color-surface);
   padding: 2.25rem 2rem;
   border-radius: 16px;
@@ -17,19 +17,19 @@
   border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
-.title {
+.recipesTitle {
   margin: 0;
   font-size: 1.6rem;
   color: var(--color-primary);
 }
 
-.filterButtons {
+.categoryFilterButtons {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
-.filterButton {
+.categoryFilterButton {
   padding: 0.6rem 1.25rem;
   border: 2px solid var(--color-primary);
   border-radius: 8px;
@@ -41,68 +41,68 @@
   transition: all 0.2s ease;
 }
 
-.filterButton:hover {
+.categoryFilterButton:hover {
   background-color: var(--color-primary-soft);
   transform: translateY(-1px);
 }
 
-.filterButtonActive {
+.categoryFilterButtonActive {
   background-color: var(--color-primary);
   color: white;
 }
 
-.filterButtonActive:hover {
+.categoryFilterButtonActive:hover {
   background-color: var(--color-primary);
   transform: translateY(0);
 }
 
-.message {
+.statusMessage {
   text-align: center;
   color: var(--color-text-muted);
   font-size: 1.1rem;
   padding: 2rem 0;
 }
 
-.error {
+.errorMessage {
   text-align: center;
   color: #dc2626;
   font-size: 1.1rem;
   padding: 2rem 0;
 }
 
-.scrollContainer {
+.recipesScrollContainer {
   max-height: 500px;
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 0.5rem;
 }
 
-.scrollContainer::-webkit-scrollbar {
+.recipesScrollContainer::-webkit-scrollbar {
   width: 8px;
 }
 
-.scrollContainer::-webkit-scrollbar-track {
+.recipesScrollContainer::-webkit-scrollbar-track {
   background: var(--color-surface-soft);
   border-radius: 4px;
 }
 
-.scrollContainer::-webkit-scrollbar-thumb {
+.recipesScrollContainer::-webkit-scrollbar-thumb {
   background: var(--color-primary);
   border-radius: 4px;
 }
 
-.scrollContainer::-webkit-scrollbar-thumb:hover {
+.recipesScrollContainer::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
   opacity: 0.8;
 }
 
-.grid {
+.recipesGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 
-.recipeCard {
+.recipeCardItem {
   background-color: var(--color-surface-soft);
   padding: 1.5rem;
   border-radius: 12px;
@@ -115,21 +115,21 @@
   cursor: pointer;
 }
 
-.recipeCard:hover {
+.recipeCardItem:hover {
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
   transform: translateY(-3px);
   border-color: var(--color-primary);
   background-color: var(--color-surface);
 }
 
-.cardHeader {
+.recipeCardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 0.75rem;
 }
 
-.cardTitle {
+.recipeCardTitle {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
@@ -137,7 +137,7 @@
   flex: 1;
 }
 
-.categoryBadge {
+.recipeCategoryBadge {
   padding: 0.25rem 0.75rem;
   border-radius: 6px;
   background-color: var(--color-primary-soft);
@@ -148,7 +148,7 @@
   white-space: nowrap;
 }
 
-.cardDescription {
+.recipeCardDescription {
   margin: 0;
   color: var(--color-text-muted);
   font-size: 0.95rem;
@@ -159,15 +159,14 @@
   overflow: hidden;
 }
 
-.cardFooter {
+.recipeCardFooter {
   margin-top: auto;
   padding-top: 0.5rem;
   border-top: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-.ingredientCount {
+.recipeIngredientCount {
   font-size: 0.85rem;
   color: var(--color-text-muted);
   font-weight: 500;
 }
-
